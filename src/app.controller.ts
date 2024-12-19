@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { AppService } from './app.service';
 import { PaymentInitDTO } from './payment.dto';
 import { Request } from 'express';
@@ -23,7 +23,7 @@ export class AppController {
   }
 
   @Post('webhook')
-  async webhook(@Body() body: Request) {
-    return await this.appService.verifyWebhook(body);
+  async webhook(@Req() req: Request) {
+    return await this.appService.verifyWebhook(req);
   }
 }

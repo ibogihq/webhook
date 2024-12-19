@@ -78,6 +78,7 @@ export class AppService {
   }
 
   private async verifySignature(input: Request) {
+    console.log(input.headers);
     const signature = input.headers['x-paystack-signature'];
 
     const hash = crypto
@@ -89,6 +90,7 @@ export class AppService {
   }
 
   async verifyWebhook(input: Request) {
+    console.log(input);
     const isSignatureValid = await this.verifySignature(input);
 
     if (!isSignatureValid) {
