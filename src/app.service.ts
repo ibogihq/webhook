@@ -92,12 +92,16 @@ export class AppService {
     const isSignatureValid = await this.verifySignature(input);
 
     if (!isSignatureValid) {
+      console.log('Signature is not valid');
       return;
     }
 
     const event = input.body;
 
+    console.log('first event', event);
+
     if (event.event === 'charge.success') {
+      console.log('Charge Success');
       await this.verifyPayment(event.data.reference);
     }
 
